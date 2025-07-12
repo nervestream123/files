@@ -1,49 +1,61 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
-const { ipcMain } = require('electron')
 const { exec } = require('child_process')
 
+let mainWindow; // <-- define it globally
+
 function createWindow() {
-  const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+  mainWindow = new BrowserWindow({
+    height: 40,
+    width: 650,
     titleBarStyle: 'hidden',
-    ...(process.platform !== 'darwin' ? { titleBarOverlay: true } : {}),
+    titleBarOverlay: {
+      color: '#12042a',
+      symbolColor: 'white'
+    },
+    transparent: true,
+    frame: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
-      nodeIntegration: false,  // recommended for security
-      contextIsolation: true,  // recommended
+      nodeIntegration: false,
+      contextIsolation: true,
     }
-  })
+  });
 
-  // Load Vite dev server in dev, or the built index.html in prod
   if (process.env.VITE_DEV_SERVER_URL) {
-    win.loadURL(process.env.VITE_DEV_SERVER_URL)
+    mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL);
   } else {
-    win.loadFile(path.join(__dirname, 'dist', 'index.html'))
+    mainWindow.loadFile(path.join(__dirname, 'dist', 'index.html'));
   }
 }
 
 app.whenReady().then(() => {
-  createWindow()
+  createWindow();
 
   app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
-  })
-})
+    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+  });
+});
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit()
-})
+  if (process.platform !== 'darwin') app.quit();
+});
 
 ipcMain.handle('run-bash', async (event, command) => {
   return new Promise((resolve, reject) => {
     exec(command, (error, stdout, stderr) => {
       if (error) {
-        reject(stderr || error.message)
+        reject(stderr || error.message);
       } else {
-        resolve(stdout)
+        resolve(stdout);
       }
-    })
-  })
-})
+    });
+  });
+});
+
+ipcMain.on('set-height', (event, height) => {
+  if (mainWindow) {
+    const [winWidth] = mainWindow.getSize();
+    mainWindow.setSize(winWidth, height) + 30;
+  }
+});

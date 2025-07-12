@@ -3,8 +3,8 @@ import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 
 function Input() {
   return (
-    <Flex>
-      <TextField.Root placeholder="Search the docs…">
+    <Flex width="100%">
+      <TextField.Root placeholder="Describe the task..." className="w-full">
         <TextField.Slot>
           <MagnifyingGlassIcon height="16" width="16" />
         </TextField.Slot>

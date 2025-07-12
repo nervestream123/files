@@ -14,7 +14,7 @@ function App() {
   useEffect(() => {
     const resize = () => {
       const height = containerRef.current?.scrollHeight ?? 0;
-      window.electronAPI?.setHeight(height + 30);
+      window.electronAPI?.setHeight(height + 30 + 2);
     };
 
     // Initial resize
@@ -32,7 +32,7 @@ function App() {
   }, []);
 
   return (
-    <Flex className="px-[10px]" direction="column" align="center" ref={containerRef}>
+    <Flex className="mx-[10px]" direction="column" align="center" ref={containerRef}>
       <Input></Input>
       <Directory></Directory>
       <Tasks></Tasks>

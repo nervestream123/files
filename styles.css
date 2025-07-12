@@ -2,7 +2,8 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  background: #12042a;
+  background: #090017;
+  border: 1px solid #8c00ff3a;
 }
 
 .titlebar {

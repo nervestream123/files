@@ -5,6 +5,7 @@ import Input from './components/Input'
 import Tasks from './components/Tasks'
 import Log from './components/Log';
 import Directory from './components/Directory';
+import Menu from './components/Menu';
 
 function App() {
   const containerRef = useRef(null);
@@ -34,6 +35,7 @@ function App() {
       <Input></Input>
       <Directory></Directory>
       <Tasks></Tasks>
+      <Menu></Menu>
       <Log></Log>
     </Flex>
   )

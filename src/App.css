@@ -10,3 +10,13 @@
 .radix-themes:where([data-is-root-theme="true"]) {
   min-height: auto !important;
 }
+
+#log {
+  background: #23015d;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+#log::-webkit-scrollbar {
+  display: none;
+}

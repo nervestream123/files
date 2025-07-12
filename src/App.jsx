@@ -3,6 +3,7 @@ import { Flex } from '@radix-ui/themes'
 import './App.css'
 import Input from './components/Input'
 import Tasks from './components/Tasks'
+import Log from './components/Log';
 
 function App() {
   const containerRef = useRef(null);
@@ -28,9 +29,10 @@ function App() {
   }, []);
 
   return (
-    <Flex direction="column" align="center" ref={containerRef}>
+    <Flex className="px-[10px] pb-[10px]" direction="column" align="center" ref={containerRef}>
       <Input></Input>
       <Tasks></Tasks>
+      <Log></Log>
     </Flex>
   )
 }

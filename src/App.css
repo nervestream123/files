@@ -11,6 +11,11 @@
   min-height: auto !important;
 }
 
+#submit-button {
+  background-color: #5e13d2 !important;
+  cursor: pointer !important;
+}
+
 #log {
   background: #23015d;
   scrollbar-width: none;

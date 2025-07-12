@@ -6,6 +6,7 @@ import Tasks from './components/Tasks'
 import Log from './components/Log';
 import Directory from './components/Directory';
 import Menu from './components/Menu';
+import Tokens from './components/Tokens';
 
 function App() {
   const containerRef = useRef(null);
@@ -31,12 +32,13 @@ function App() {
   }, []);
 
   return (
-    <Flex className="px-[10px] pb-[10px]" direction="column" align="center" ref={containerRef}>
+    <Flex className="px-[10px]" direction="column" align="center" ref={containerRef}>
       <Input></Input>
       <Directory></Directory>
       <Tasks></Tasks>
       <Menu></Menu>
       <Log></Log>
+      <Tokens></Tokens>
     </Flex>
   )
 }
